@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+:root{
+    --hue:200;
+    --saturation:50%;
+    --foreground-color: hsl(var(--hue),var(--saturation),75%);
+    --background-color: hsl(var(--hue),var(--saturation),20%);
+}
+
+.paddle{
+    --position:50;
+    background-color:var(--foreground-color);
+    position: absolute;
+    height: 10vh;
+    width: 1vh; /*10px */
+    top:calc(var(--position)* 1vh); /*Will use in script file*/
+    transform: translateY(-50%);
+}
+.paddle.left{
+    left: 1vw;
+}
+.paddle.right{
+right: 1vw;
+}
+
+.ball{
+     --x:50;
+     --y:50;
+    background-color:var(--foreground-color);
+    position: absolute;
+    height: 2.5vh;
+    width: 2.5vh; /* 1vh=10px */
+    left: calc(var(--x)* 1vw);
+    top:  calc(var(--y)* 1vh); /*Will use in script file*/
+    border-radius: 50%; 
+    transform: translateY(-50%,-50%);
+} 
+.score{
+    display: flex;
+    justify-content: center;
+    font-size: 7vh;
+    font-weight: bold;
+    color: var(--foreground-color);
+   
+      opacity: 0.5;
+     
+   
+   
+}
+#player-score{
+    flex-grow: 1;
+   border-right: .5vh solid var(--foreground-color);
+    text-align: right;
+     padding: 0vh 2vh;
+      margin: 1vh 0;
+}
+#computer-score{
+    flex-grow: 1;
+   margin-left: 2vh;
+    padding: 0vh 2vh;
+      margin: 1vh 0;
+}

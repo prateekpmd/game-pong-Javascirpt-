@@ -5,6 +5,8 @@ import Paddle from "./Paddle.js";
 const ball = new Ball(document.getElementById("ball"));
 const playerPaddle = new Paddle(document.getElementById("player-paddle"));
 const computerPaddle = new Paddle(document.getElementById("computer-paddle"));
+const playerScore = document.getElementById("player-score");
+const computerScore = document.getElementById("computer-score");
 
 
 let lastTime;
@@ -14,10 +16,29 @@ function update(time) {
     console.log(delta);
     ball.update(delta);
     computerPaddle.update(delta, ball.y);
+    if (isLoose()) {
+      handleLoose();
+    }
      }
  lastTime = time;
 
  window.requestAnimationFrame(update);
+}
+
+function isLoose() {
+  const rect = ball.rect();
+  return rect.right >= window.innerWidth || rect.left <= 0;
+}
+
+function handleLoose() {
+  const rect = ball.rect();
+  if (rect.right >= window.innerWidth) {
+    playerScore.textContent = parseInt(playerScore.textContent) + 1;
+  } else {
+    computerScore.textContent = parseInt(computerScore.textContent) + 1;
+  }
+  ball.reset();
+  computerPaddle.reset();
 }
 
 

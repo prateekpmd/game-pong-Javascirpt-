@@ -32,14 +32,18 @@ export default class Ball {
     this.x = 50;
     this.y = 50;
     this.direction = { x: 0, y: 0 };
-
-    const heading = randomNumberBetween(0, 2 * Math.PI);
-    this.direction = { x: Math.cos(heading), y: Math.sin(heading) };
-
+    while (
+      Math.abs(this.direction.x) <= 0.2 ||
+      Math.abs(this.direction.x) >=
+        0.9 /* not gonna be fun if the vaalue is less that 0.2 it means its gonna just move up and dowan and if its more than 0.9 its gonna be moving only in x axis so the value showld be betwween 0.2 or 0.9 in x axis*/
+    ) {
+      const heading = randomNumberBetween(0, 2 * Math.PI);
+      this.direction = { x: Math.cos(heading), y: Math.sin(heading) };
+    }
     console.log(this.direction);
     this.velocity = INITIAL_VELOCITY;
   }
-  update(delta,paddleRects) {
+  update(delta, paddleRects) {
     this.x += this.direction.x * this.velocity * delta;
     this.y += this.direction.y * this.velocity * delta;
 
